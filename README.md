@@ -57,8 +57,7 @@
 
 سایت استاتیک پروژه با موفقیت روی GitHub Pages دیپلوی شده و در آدرس زیر قابل مشاهده است:
 
-https://Your-Organization-Name.github.io/Your-Repo-Name/
-
+https://selab-g.github.io/exp1
 (آدرس واقعی را با توجه به سازمان و مخزن خود جایگزین کنید)
 
 ## ویژگی‌های پیاده‌سازی شده
