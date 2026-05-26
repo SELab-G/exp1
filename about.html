@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - EXP1 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="lang-switch">
+        <button id="langEn">EN</button>
+        <button id="langFr">FR</button>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="page-container">
+        <h1>About EXP1 2026</h1>
+        <p>EXP1 2026 is the premier event for web developers, researchers, and industry leaders. Join us in Tehran to explore the latest trends in web technologies, AI, and security.</p>
+        <h2>Our Mission</h2>
+        <p>To foster collaboration and innovation in the web community.</p>
+        <h2>Organizers</h2>
+        <p>EXP1 Committee - Department of Computer Engineering, University of Tehran</p>
+    </div>
+    <footer>
+        <p>&copy; 2026 EXP1 Team</p>
+    </footer>
+    <script>
+        // Simple language switch for about page (optional)
+        const translationsAbout = {
+            en: { title: "About EXP1 2026", mission: "Our Mission", organizers: "Organizers", missionText: "To foster collaboration and innovation in the web community.", organizersText: "EXP1 Committee - Department of Computer Engineering, University of Tehran" },
+            fr: { title: "À propos d'EXP1 2026", mission: "Notre mission", organizers: "Organisateurs", missionText: "Favoriser la collaboration et l'innovation dans la communauté Web.", organizersText: "Comité EXP1 - Département de génie informatique, Université de Téhéran" }
+        };
+        let currentLang = localStorage.getItem('lang') || 'en';
+        function updateAboutLanguage() {
+            document.querySelector('h1').innerText = translationsAbout[currentLang].title;
+            document.querySelector('h2:first-of-type').innerText = translationsAbout[currentLang].mission;
+            document.querySelector('h2:last-of-type').innerText = translationsAbout[currentLang].organizers;
+            const ps = document.querySelectorAll('.page-container p');
+            if (ps.length >= 2) {
+                ps[0].innerHTML = translationsAbout[currentLang].missionText;
+                ps[1].innerHTML = translationsAbout[currentLang].organizersText;
+            }
+        }
+        document.getElementById('langEn')?.addEventListener('click', () => { currentLang = 'en'; localStorage.setItem('lang', 'en'); updateAboutLanguage(); });
+        document.getElementById('langFr')?.addEventListener('click', () => { currentLang = 'fr'; localStorage.setItem('lang', 'fr'); updateAboutLanguage(); });
+        updateAboutLanguage();
+    </script>
+</body>
+</html>
