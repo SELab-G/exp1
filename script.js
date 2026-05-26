@@ -34,6 +34,61 @@ function buildSchedule() {
     container.innerHTML = html;
 }
 buildSchedule();
+// Languages
+const translations = {
+    en: {
+        title: "MyConf 2025",
+        subtitle: "International Conference on Web Technologies",
+        date: "📅 May 10-12, 2025 | Tehran, Iran",
+        register: "Register Now",
+        speakersTitle: "Speakers",
+        scheduleTitle: "Schedule",
+        aboutLink: "About",
+        contactLink: "Contact"
+    },
+    fr: {
+        title: "MyConf 2025",
+        subtitle: "Conférence internationale sur les technologies Web",
+        date: "📅 10-12 mai 2025 | Téhéran, Iran",
+        register: "S'inscrire",
+        speakersTitle: "Conférenciers",
+        scheduleTitle: "Programme",
+        aboutLink: "À propos",
+        contactLink: "Contact"
+    }
+};
+
+let currentLang = 'en';
+
+function updateLanguage() {
+    // Update static texts
+    document.querySelector('h1').innerText = translations[currentLang].title;
+    document.querySelector('header p:first-of-type').innerText = translations[currentLang].subtitle;
+    document.querySelector('header p:nth-of-type(2)').innerHTML = translations[currentLang].date;
+    document.getElementById('registerBtn').innerText = translations[currentLang].register;
+    document.querySelector('#speakers h2').innerText = translations[currentLang].speakersTitle;
+    document.querySelector('#schedule h2').innerText = translations[currentLang].scheduleTitle;
+    
+    // Update navigation links (if needed)
+    const navLinks = document.querySelectorAll('nav a');
+    if (navLinks.length >= 3) {
+        navLinks[1].innerText = translations[currentLang].aboutLink; // About link
+        navLinks[2].innerText = translations[currentLang].contactLink; // Contact link
+    }
+}
+
+// Click events
+document.getElementById('langEn').addEventListener('click', () => {
+    currentLang = 'en';
+    updateLanguage();
+});
+document.getElementById('langFr').addEventListener('click', () => {
+    currentLang = 'fr';
+    updateLanguage();
+});
+
+// Initial execution
+updateLanguage();
 
 document.getElementById('registerBtn').addEventListener('click', () => {
     alert('Registration form will be available soon!');
