@@ -226,6 +226,34 @@ git checkout -- file.txt   # بازیابی فایل از HEAD
 
 
 
+## ۵) منظور از stage یا همان index چیست؟ دستور stash چه کاری انجام می‌دهد؟
+
+- **Stage / Index**
+  - وقتی فایل‌ها را تغییر می‌دهید، ابتدا در working directory تغییر می‌کنند. وقتی آماده شدید که این تغییرات را commit کنید، آن‌ها را به staging area می‌فرستید (معمولا با git add). فایل index داخل git/index وضعیت فایل‌های staged را نگهداری می‌کند.
+  - Commit از محتوای index یک snapshot می‌سازد؛ یعنی چیزی که در commit می‌بینید دقیقا همان چیزی است که در index بوده.
+
+برای مثال:
+
+```
+git add file.txt
+git commit -m
+```
+
+- **git stash**
+  - وقتی مشغول کار روی چیزی هستید ولی نمی‌خواهید تغییرات را commit کنید و هم‌زمان باید شاخه را تغییر دهید یا یک pull انجام دهید، git stash تغییرات working directory (و در صورت خواسته index) را ذخیره موقت می‌کند و working tree را تمیز می‌کند.
+  - stash در پس‌زمینه یک commit موقت می‌سازَد و آن را در یک stack ذخیره می‌کند. بعدا می‌توانی آن را git stash apply یا git stash pop کنی تا تغییرات برگردند.
+
+برای مثال:
+
+```
+git stash          # ذخیره و پاکسازی تغییرات
+git stash apply    # اعمال کردن تغییرات ذخیره‌شده (بدون حذف از stash)
+git stash pop      # اعمال و پاک‌کردن از stash
+```
+
+---
+
+
 
 
 
