@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - MyConf 2025</title>
+    <title>Contact - EXP1 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="lang-switch">
+        <button id="langEn">EN</button>
+        <button id="langFr">FR</button>
+    </div>
     <nav>
         <a href="index.html">Home</a>
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
     <div class="page-container">
@@ -19,16 +24,23 @@
             <textarea rows="5" placeholder="Your Message" required></textarea><br>
             <button type="submit">Send Message</button>
         </form>
-        <p>Email: info@myconf2025.com | Phone: +98 21 12345678</p>
+        <p>Email: info@exp1-2026.com | Phone: +98 21 12345678</p>
     </div>
     <footer>
-        <p>&copy; 2025 MyConf Team</p>
+        <p>&copy; 2026 EXP1 Team</p>
     </footer>
     <script>
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Your message has been sent (demo).');
         });
+        // simple language sync (optional)
+        const langEn = document.getElementById('langEn');
+        const langFr = document.getElementById('langFr');
+        if (langEn && langFr) {
+            langEn.addEventListener('click', () => { document.querySelector('h1').innerText = "Contact Us"; });
+            langFr.addEventListener('click', () => { document.querySelector('h1').innerText = "Nous contacter"; });
+        }
     </script>
 </body>
 </html>
