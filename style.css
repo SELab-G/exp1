@@ -75,6 +75,7 @@ nav a {
 nav a:hover {
     text-decoration: underline;
 }
+
 /* page container for about/contact */
 .page-container {
     max-width: 800px;
@@ -105,7 +106,9 @@ footer {
     background: #1e3c72;
     color: white;
     margin-top: 40px;
-  
+}
+
+/* language switch button */
 .lang-switch {
     position: fixed;
     top: 20px;
