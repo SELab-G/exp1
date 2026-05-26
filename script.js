@@ -23,23 +23,26 @@ const schedule = [
 
 function buildSchedule() {
     const container = document.getElementById('scheduleTable');
+    if (!container) return;
     let html = '';
     schedule.forEach(day => {
-        html += `<h3>${day.day}</h3><table><tr><th>Time</th><th>Title</th><th>Location</th></tr>`;
+        html += `<h3>${day.day}</h3>`;
+        html += `<table><thead><tr><th>Time</th><th>Title</th><th>Location</th></tr></thead><tbody>`;
         day.events.forEach(e => {
             html += `<tr><td>${e.time}</td><td>${e.title}</td><td>${e.location}</td></tr>`;
         });
-        html += `</table><br>`;
+        html += `</tbody></table><br>`;
     });
     container.innerHTML = html;
 }
 buildSchedule();
+
 // Languages
 const translations = {
     en: {
-        title: "MyConf 2025",
+        title: "EXP1 2026",
         subtitle: "International Conference on Web Technologies",
-        date: "📅 May 10-12, 2025 | Tehran, Iran",
+        date: "📅 May 10-12, 2026 | Tehran, Iran",
         register: "Register Now",
         speakersTitle: "Speakers",
         scheduleTitle: "Schedule",
@@ -47,9 +50,9 @@ const translations = {
         contactLink: "Contact"
     },
     fr: {
-        title: "MyConf 2025",
+        title: "EXP1 2026",
         subtitle: "Conférence internationale sur les technologies Web",
-        date: "📅 10-12 mai 2025 | Téhéran, Iran",
+        date: "📅 10-12 mai 2026 | Téhéran, Iran",
         register: "S'inscrire",
         speakersTitle: "Conférenciers",
         scheduleTitle: "Programme",
@@ -61,35 +64,36 @@ const translations = {
 let currentLang = 'en';
 
 function updateLanguage() {
-    // Update static texts
     document.querySelector('h1').innerText = translations[currentLang].title;
-    document.querySelector('header p:first-of-type').innerText = translations[currentLang].subtitle;
-    document.querySelector('header p:nth-of-type(2)').innerHTML = translations[currentLang].date;
+    const headerPs = document.querySelectorAll('header p');
+    if (headerPs.length >= 2) {
+        headerPs[0].innerText = translations[currentLang].subtitle;
+        headerPs[1].innerHTML = translations[currentLang].date;
+    }
     document.getElementById('registerBtn').innerText = translations[currentLang].register;
     document.querySelector('#speakers h2').innerText = translations[currentLang].speakersTitle;
     document.querySelector('#schedule h2').innerText = translations[currentLang].scheduleTitle;
     
-    // Update navigation links (if needed)
     const navLinks = document.querySelectorAll('nav a');
     if (navLinks.length >= 3) {
-        navLinks[1].innerText = translations[currentLang].aboutLink; // About link
-        navLinks[2].innerText = translations[currentLang].contactLink; // Contact link
+        navLinks[1].innerText = translations[currentLang].aboutLink;
+        navLinks[2].innerText = translations[currentLang].contactLink;
     }
 }
 
-// Click events
-document.getElementById('langEn').addEventListener('click', () => {
-    currentLang = 'en';
-    updateLanguage();
-});
-document.getElementById('langFr').addEventListener('click', () => {
-    currentLang = 'fr';
-    updateLanguage();
-});
+// Event listeners for language buttons
+const langEnBtn = document.getElementById('langEn');
+const langFrBtn = document.getElementById('langFr');
+if (langEnBtn) langEnBtn.addEventListener('click', () => { currentLang = 'en'; updateLanguage(); });
+if (langFrBtn) langFrBtn.addEventListener('click', () => { currentLang = 'fr'; updateLanguage(); });
 
 // Initial execution
 updateLanguage();
 
-document.getElementById('registerBtn').addEventListener('click', () => {
-    alert('Registration form will be available soon!');
-});
+// Register button
+const regBtn = document.getElementById('registerBtn');
+if (regBtn) {
+    regBtn.addEventListener('click', () => {
+        alert('Registration form will be available soon!');
+    });
+}
