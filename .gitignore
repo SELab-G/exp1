@@ -1,3 +1,13 @@
 .DS_Store
 *.log
 .vscode/
+
+.Trashes
+*.exe
+*.tmp
+*.temp
+*.rar
+*.swp
+*.swo
+*~
+*.log
