@@ -165,6 +165,66 @@ git cherry-pick <commit-hash>
 ---
 
 
+## ۴) تفاوت دستورهای reset و revert و restore و switch و checkout
+
+- **git reset**
+  - شاخه‌ی فعلی (pointer) را به یک commit دیگر می‌برد. حالت‌هایی دارد:
+    - --soft فقط pointer شاخه را جابجا می‌کند (index و working tree بدون تغییر).
+    - --mixed (پیش‌فرض) pointer را جابجا می‌کند و index را هم هماهنگ می‌کند، اما working tree تغییر نمی‌کند.
+    - --hard pointer، index و working tree را به آن commit می‌برد (تغییرات محلی از بین می‌روند).
+
+برای مثال:
+
+```
+git reset --soft HEAD~1   # یک commit به عقب، تغییرات در staged می‌ماند
+git reset --mixed HEAD~1  # تغییرات از staged خارج می‌شود
+git reset --hard HEAD~1   # همه چیز را به یک commit قبل برمی‌گرداند
+```
+
+- **git revert**
+  - یک commit را معکوس می‌کند اما به شکلی امن: یک commit جدید می‌سازد که تغییرات commit منتخب را خنثی می‌کند.
+  - این روش امن است برای بازگرداندن تغییرات در شاخه‌هایی که با دیگران به اشتراک گذاشته شده‌اند؛ چون تاریخچه را بازنویسی نمی‌کند.
+
+برای مثال:
+
+```
+git revert <commit-hash>
+```
+
+- **git restore**
+  - برای بازیابی فایل‌ها از index یا commit به working tree یا برعکس استفاده می‌شود.
+  - جایگزین ایمن‌تری برای برخی استفاده‌های checkout است که گاهی گیج‌کننده بود.
+
+برای مثال:
+
+```
+git restore file.txt
+git restore --staged file.txt
+```
+
+- **git switch**
+  - مخصوص عوض کردن شاخه‌ها است و جایگزینی واضح‌تر برای رفتار چندمنظوره‌ی checkout که هم روی فایل‌ها و هم روی شاخه‌ها اثر می‌گذاشت.
+
+برای مثال:
+
+```
+git switch feature-x
+git switch -c new-branch   # ساخت شاخه و رفتن به آن
+```
+
+- **git checkout**
+  - دستور قدیمی که هم برای تغییر شاخه و هم برای بازیابی فایل‌ها استفاده می‌شد. به همین دلیل در نسخه‌های جدید گیت توصیه می‌شود از switch برای شاخه‌ها و restore برای فایل‌ها استفاده کنید تا سردرگمی کمتر شود.
+
+برای مثال:
+
+```
+git checkout feature-x
+git checkout -- file.txt   # بازیابی فایل از HEAD
+```
+
+---
+
+
 
 
 
